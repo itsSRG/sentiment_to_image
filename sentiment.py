@@ -1,15 +1,20 @@
-from dataclasses import replace
 from nltk.sentiment import SentimentIntensityAnalyzer
 from scipy import rand
+from PIL import Image
+import random
+import os
+
+
+list_of_files = os.listdir()
+positive = [i for i in list_of_files if 'hap' in  i]
+negative = [i for i in list_of_files if 'sad' in i]
+neutral = [i for i in list_of_files if 'neu' in i]
+
 sia = SentimentIntensityAnalyzer()
 my_day = input()
 score = sia.polarity_scores(my_day)
 print(score)
 # {'neg': 0.0, 'neu': 0.0, 'pos': 1.0, 'compound': 0.4404}
-
-from PIL import Image, ImageEnhance
-import random
-
 
 from PIL import Image, ImageEnhance
 collage = Image.new("RGB", (2500,2500), (255,255,255))
@@ -29,7 +34,7 @@ print(random_row_pos)
 
 for i in range(0, 2500, 250):
     for j in range(0, 2500, 250):
-        image_list = ['neu1.png','neu2.png','neu3.png','neu4.png', 'neu6.png', 'neu7.png']
+        image_list = neutral
         img_neu = Image.open(random.choice(image_list))
         img_neu = img_neu.resize((250,250))
         temp = random.randint(0,100)
@@ -43,7 +48,7 @@ for i in range(0, 2500, 250):
         img_neu.close()
 
 for i in range(0, len(random_row_pos)):
-    image_list = ['fh1.png','fh2.png','fh4.png']
+    image_list = positive
     img_pos = Image.open(random.choice(image_list))
     img_pos = img_pos.resize((250,250))
     temp = random.randint(0,100)
@@ -58,9 +63,9 @@ for i in range(0, len(random_row_pos)):
 
 c = 0.7
 for i in range(0, len(random_row_neg)):
-    image_list = ['fs1.png']
+    image_list = negative
     img_neg = Image.open(random.choice(image_list))
-    img_neg = img_pos.resize((250,250))
+    img_neg = img_neg.resize((250,250))
     temp = random.randint(0,100)
     if temp < 25:
         img_neg = img_neg.rotate(90)
