@@ -29,25 +29,21 @@ print(random_row_pos)
 
 for i in range(0, 2500, 250):
     for j in range(0, 2500, 250):
-        image_list = ['neu1.png','neu2.png','neu3.png','neu4.png', 'neu5.png', 'neu6.png', 'neu7.png']
+        image_list = ['neu1.png','neu2.png','neu3.png','neu4.png', 'neu6.png', 'neu7.png']
         img_neu = Image.open(random.choice(image_list))
         img_neu = img_neu.resize((250,250))
         temp = random.randint(0,100)
         if temp < 25:
-            rot_image = img_neu.rotate(90)
-            collage.paste(rot_image, (j,i))
+            img_neu = img_neu.rotate(90)
         elif temp < 50:
-            rot_image = img_neu.rotate(180)
-            collage.paste(rot_image, (j,i))
+            img_neu = img_neu.rotate(180)
         elif temp < 75:
-            rot_image = img_neu.rotate(270)
-            collage.paste(rot_image, (j,i))
-        else:
-            collage.paste(img_neu, (j,i))
+            img_neu = img_neu.rotate(270)
+        collage.paste(img_neu, (j,i))
         img_neu.close()
 
 for i in range(0, len(random_row_pos)):
-    image_list = ['fh1.png','fh2.png','fh3.png','fh4.png']
+    image_list = ['fh1.png','fh2.png','fh4.png']
     img_pos = Image.open(random.choice(image_list))
     img_pos = img_pos.resize((250,250))
     temp = random.randint(0,100)
