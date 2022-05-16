@@ -40,14 +40,15 @@ column = [j for j in range(10)]
 random_row_neu = [i for j in range (10) for i in range (10)]
 random_column_neu = [j for j in range (10) for i in range (10)]
 
-random_row_pos = random.choices(row, k = int(score['pos']*100))
-random_column_pos = random.choices(column, k = int(score['pos']*100))
+random_row_pos = random.choices(row, k = int(score['pos']*150))
+random_column_pos = random.choices(column, k = int(score['pos']*150))
 
-random_row_neg = random.choices(row, k = int(score['neg']*100))
-random_column_neg = random.choices(column, k = int(score['neg']*100))
+random_row_neg = random.choices(row, k = int(score['neg']*150))
+random_column_neg = random.choices(column, k = int(score['neg']*150))
 
 paste_specific(random_row=random_row_neu, random_column=random_column_neu, list_of_img_name=neutral)
 paste_specific(random_row=random_row_pos, random_column=random_column_pos, list_of_img_name=positive)
 paste_specific(random_row=random_row_neg, random_column=random_column_neg, list_of_img_name=negative)
 
 collage.show()
+collage.save('collage.png')
