@@ -27,7 +27,8 @@ sia = SentimentIntensityAnalyzer()
 my_day = input()
 score = sia.polarity_scores(my_day)
 print(score)
-# {'neg': 0.0, 'neu': 0.0, 'pos': 1.0, 'compound': 0.4404}
+
+# score format : {'neg': x, 'neu': y, 'pos': z, 'compound': a}
 
 from PIL import Image, ImageEnhance
 collage = Image.new("RGB", (2500,2500), (255,255,255))
@@ -38,20 +39,15 @@ column = [j for j in range(10)]
 
 random_row_neu = [i for j in range (10) for i in range (10)]
 random_column_neu = [j for j in range (10) for i in range (10)]
-# print(random_row_neu)
-# print(random_column_neu)
+
 random_row_pos = random.choices(row, k = int(score['pos']*100))
 random_column_pos = random.choices(column, k = int(score['pos']*100))
 
 random_row_neg = random.choices(row, k = int(score['neg']*100))
 random_column_neg = random.choices(column, k = int(score['neg']*100))
 
-# print(random_column_pos)
-# print(random_row_pos)
-
 paste_specific(random_row=random_row_neu, random_column=random_column_neu, list_of_img_name=neutral)
 paste_specific(random_row=random_row_pos, random_column=random_column_pos, list_of_img_name=positive)
 paste_specific(random_row=random_row_neg, random_column=random_column_neg, list_of_img_name=negative)
-
 
 collage.show()
