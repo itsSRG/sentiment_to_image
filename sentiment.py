@@ -1,5 +1,4 @@
 from nltk.sentiment import SentimentIntensityAnalyzer
-from scipy import rand
 from PIL import Image
 import random
 import os
